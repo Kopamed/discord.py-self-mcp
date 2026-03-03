@@ -134,7 +134,7 @@ async def search_messages(arguments: dict):
         # Basic filtering using history since standard search API is not always reliable in selfbots without indexing
         async for msg in channel.history(limit=limit * 2):  # Fetch double to filter
             # Search in content AND embed text
-            search_text = msg.content.lower()
+            search_text = (msg.content or "").lower()
             for embed in msg.embeds:
                 search_text += " " + format_embed(embed).lower()
 
